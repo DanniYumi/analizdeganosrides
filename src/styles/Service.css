@@ -1,0 +1,42 @@
+.container-service{
+    background-color: #718B6E;
+    width: 80%;
+    height: 600px;
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    border-radius: 5px;
+    color:#F3EEEE;
+}
+.service-title{
+    padding-top: 20px;
+    font-size: 30px;
+}
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 50px;
+  }
+  
+  th,
+  td {
+    border: 1px solid #F3EEEE;
+    text-align: left;
+    padding: 8px;
+    padding-left: 10px;
+    font-size: 24px;
+  }
+  
+  
+  form {
+    display: flex;
+    gap: 5px;
+  }
+  
+  form td:last-child {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+ 
