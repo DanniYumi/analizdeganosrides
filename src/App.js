@@ -15,6 +15,8 @@ import Terms from './pages/Terms'
 import { AuthContextProvider } from './context/AuthContext';
 import UserAccount from './pages/UserAccount';
 import Protected from './components/Protected';
+import Reset from './pages/Reset';
+import Reviews from './pages/Reviews';
 
 
 
@@ -38,6 +40,8 @@ function App() {
           <Route exact path='/services' element={<Service/>} />
           <Route exact path='/faq' element={<Faq/>} />
           <Route exact path='/terms' element={<Terms/>} />
+          <Route exact path='/reset' element={<Reset/>} />
+          <Route exact path='/reviews' element={<Reviews/>} />
           <Route exact path='/account' element={<Protected><UserAccount/></Protected>} />
           </Routes>
           

@@ -1,0 +1,121 @@
+.review-container{
+    background-color: #234945;
+    color:  #F3EEEE;
+    width: 80%;
+    height: 1000px;
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-bottom: 100px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+.review-tittle {
+    font-size: 30px;
+    padding-top: 20px;
+}
+.review-text{
+    font-size: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+.review-form{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+.imput-container-review{
+    width: 300px;
+    height: 25px;
+    margin-left: 20%;
+    margin-bottom: 20px;
+    border-color: #F3EEEE;
+    color:#F3EEEE;
+    background-color: #4D2A41;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.textarea-container-review{
+    width: 300px;
+    height: 150px;
+    margin-left: 20%;
+    margin-bottom: 20px;
+    border-color: #F3EEEE;
+    background-color: #4D2A41;
+    border-radius: 5px;
+    font-size: 20px;
+    color:#F3EEEE;
+}
+.send-btn-review{
+    background-color: #234945;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    color:#F3EEEE;
+    font-size: 20px;
+    margin-left: 43%;
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(77,42, 65, 80%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    text-align: left;
+  }
+  .popup-inner {
+    
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 480px;
+    overflow: auto;
+    max-height: calc(100vh - 4rem);
+  }
+  .view-reviews{
+    display: grid;
+    max-width: 1024px;
+    margin: 2rem auto 0;
+    
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-gap: 1rem;
+  }
+  .view-review{
+    background-color: rgb(243,238, 238, 50%);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: left;
+    color: #234945;
+    margin-bottom: 5px;
+  }
+  .view-btn{
+    background-color: #234945;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    color:#F3EEEE;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .review-btn{
+    background-color: #4D2A41;
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    color:#F3EEEE;
+    font-size: 15px;
+    margin-top: 30px;
+  }
+  .close-btn{
+    size: 100px;
+    background-color: #4D2A41;
+    margin-left: 90%;
+    border-radius: 28px;
+    
+  }

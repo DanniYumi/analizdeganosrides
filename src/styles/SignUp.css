@@ -1,8 +1,8 @@
-.signin-container{
+.signup-container{
     background-color: #234945;
     color:  #F3EEEE;
     width: 80%;
-    height: 700px;
+    height: 800px;
     margin-top: 20px;
     margin-left: 10%;
     margin-bottom: 100px;
@@ -10,7 +10,7 @@
     justify-content: center;
     align-items: center;
 }
-.form-box{
+.form-box-signup{
     display: flex;
     flex-direction: column;
     font-size: 20px;
@@ -26,7 +26,7 @@
     
 }
 
-.form-input {
+.form-input-signup {
     width: 300px;
     height: 25px;
     margin-bottom: 20px;
@@ -35,12 +35,12 @@
     background-color: #234945;
     border-radius: 5px;
 }
-.form-label{
+.form-label-signup{
     padding-bottom: 10px;
     padding-top: 10px;
     
 }
-.signInBTn{
+.signUpBTn{
     background-color: #4D2A41;
     width: 100px;
     height: 40px;
@@ -51,9 +51,14 @@
     margin-bottom: 20px;
 }
 .googleBtn{
-    margin-left: 41%;
+    margin-left: 40%;
     padding-top: 30px;
 }
-.forgotPsw{
+.singinbtn{
+    text-decoration: underline;
+    font-size: 25px;
+}
+.gosignin{
+    margin-bottom: 10px;
     margin-top: 20px;
 }

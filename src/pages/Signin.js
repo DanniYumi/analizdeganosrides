@@ -62,7 +62,7 @@ const Signin = () => {
           <div className='googleBtn'>
           <GoogleButton onClick={handleGoogleSignIn} />
           </div>
-          <div>
+          <div className='forgotPsw'> 
           <Link to="/reset">Forgot Password</Link>
         </div>
         </form>

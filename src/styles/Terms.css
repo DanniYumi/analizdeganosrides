@@ -1,0 +1,29 @@
+.terms-container{
+    
+    color:  #234945;
+    
+    height: 900px;
+    margin-top: 20px;
+    
+    margin-bottom: 100px;
+    padding-top: 20px;
+    border-radius: 5px;
+}
+.terms-tittle{
+    font-size: 30px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    
+}
+
+.terms-text{
+    color:#234945;
+    align-content: center;
+    font-size: 23px;
+    text-align: center;
+    
+    margin-top: 100px;
+    margin-right: 100px;
+    margin-left: 100px;
+    
+}

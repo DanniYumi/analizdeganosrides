@@ -4,34 +4,31 @@ import emailjs from '@emailjs/browser'
 import Select from 'react-select'
 import PopUp from '../components/PopUp'
 import { db } from '../firebase'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, addDoc } from 'firebase/firestore'
 
 const Rides = () => {
   const [buttonPopUp, setButtonPopUp] = useState(false)
   const [bookings, setBookings]=useState([])
-  const[bookingForm, setBookingForm]=useState({
-    name:"",
-    email:"",
-    from:"",
-    to:"",
-    when:"",
-    service:"",
-    comments:""
-  })
-  const [popUActive, setPopUpActive]=useState(false)
-  const bookingsCollectionRef =collection(db, "bookings")
-  useEffect(()=>{
-    onSnapshot(bookingsCollectionRef, snapshot =>{
-        setBookings(snapshot.docs.map(doc=>{
-          return{
-            id:doc.id,
-            viewing:false,
-            ...doc.data()
-          }
-        }))
-    })
-  },
-  [])
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [comment, setComment] = useState('')
+  const [from, setFrom] = useState('')
+  const [to, setTo] = useState('')
+  const [when, setWhen] = useState('')
+  const [service, setService] = useState('')
+  
+
+  const handleSubmit = async (e) => {
+      e.preventDefault()
+      const rideCollectionRef = collection(db, "rides")
+      addDoc(rideCollectionRef, { name: name, comment: comment,  email:email, from:from, to:to, when:when, service:service }).then(response => {
+          console.log(response)
+      }).catch(error => {
+          console.log(error.message)
+      })
+  }
+  
+
   const form = useRef()
 
 
@@ -71,8 +68,8 @@ const Rides = () => {
         <h1> Get your quotation here</h1>
       </div>
 
-      <form ref={form}
-        onSubmit={sendMessage}
+      <form //ref={form}
+        onSubmit={handleSubmit}
         className='ride-form'
       >
         
@@ -83,9 +80,10 @@ const Rides = () => {
             type="datetime-local"
             min="2022-01-01T06:00"
             max="2025-01-01T00:00"
-
+            value={when}
             className='imput-container'
             name='when'
+            onChange={e => setWhen(e.target.value)}
             required
           />
           <span className="validity"></span>
@@ -93,7 +91,9 @@ const Rides = () => {
         <div className='ind-form'>
           <label className='label-form'>Type of rides</label>
           <Select 
+          value={service}
           options={servicesList}
+          onChange={e => setService(e.target.value)}
           name="type-ride"
           className='dropdown-form'
           required/>
@@ -103,37 +103,47 @@ const Rides = () => {
           <input
             placeholder="Name"
             name="user_name"
+            value={name}
             className='imput-container' 
+            onChange={e => setName(e.target.value)}
             required/>
         </div>
         <div className='ind-form'>
           <label className='label-form'>Email</label>
           <input
             placeholder="email"
+            value={email}
             name="email"
             className='imput-container'
+            onChange={e => setEmail(e.target.value)}
             required />
         </div>
         <div className='ind-form'>
           <label className='label-form'>Your Address</label>
           <input name="from"
+          value={from}
             className='imput-container' 
+            onChange={e => setFrom(e.target.value)}
             required/>
         </div>
         <div className='ind-form'>
           <label className='label-form'>Final destination</label>
           <input name="where"
+          value={to}
             className='imput-container'
+            onChange={e => setTo(e.target.value)}
             required />
         </div>
         <div className='ind-form'>
           <label className='label-form'>Comments</label>
           <textarea placeholder='If you have any additional question or request, place here'
             name="comments"
-            className='textarea-container' />
+            value={comment}
+            className='textarea-container' 
+            onChange={e => setComment(e.target.value)}/>
         </div>
         
-        <button className='quote-btn'>Get Quote</button>
+        <button onClick={() => setButtonPopUp(true)} className='quote-btn'>Get Quote</button>
         <PopUp
           trigger={buttonPopUp}
           setTrigger={setButtonPopUp}>

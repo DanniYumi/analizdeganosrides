@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword,
         onAuthStateChanged,
         GoogleAuthProvider,
         signInWithRedirect, sendPasswordResetEmail } from "firebase/auth";
-import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";     
+import { query, getDocs, collection, where, addDoc } from "firebase/firestore";     
 
 import {auth, db} from '../firebase'
 
@@ -28,7 +28,7 @@ export const AuthContextProvider = ({ children }) => {
         await addDoc(collection(db, "users"), {
           uid: user.uid,
           name: user.displayName,
-          authProvider: "google",
+          
           email: user.email,
         });
       }
@@ -39,25 +39,27 @@ export const AuthContextProvider = ({ children }) => {
     
   };
 
-const createUser =async (name, email, password)=>{
+const createUser =async (name,email, password)=>{
     
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const res = await createUserWithEmailAndPassword(auth, email, password, name);
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
-      authProvider: "local",
       email,
     });
+
+    
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
+
 }
-const signIn = async (email, password)=>{
+const signIn = async (name,email, password)=>{
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, name,email, password);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -91,7 +93,7 @@ const sendPasswordReset = async (email) => {
 
 
   return (
-    <AuthContext.Provider value={{ googleSignIn, logOut, createUser, signIn, auth, db, sendPasswordReset }}>
+    <AuthContext.Provider value={{ googleSignIn, logOut, createUser, signIn, auth, db, sendPasswordReset,user }}>
       {children}
     </AuthContext.Provider>
   );
