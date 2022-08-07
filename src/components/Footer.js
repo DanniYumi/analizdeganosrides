@@ -14,10 +14,16 @@ const Footer = () => {
             <Link to="/terms"> Terms And Conditions </Link>
              <Link to="/faq"> FAQ's</Link>
             <Link to="/services"> Services </Link>
-             <Link to="/reviews"> Reviews </Link>
-            <Link to="/contact"> Contact Us</Link>
+     
                     
         </div>
+        <div className="nav-links-footer" >
+    
+         <Link to="/reviews"> Reviews </Link>
+        <Link to="/contact"> Contact Us</Link>
+        <Link to="/account"> My Account</Link>
+                
+    </div>
        
         <div className='social-media'>
                 <div className='social-title'>

@@ -9,6 +9,7 @@ const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
   const [error, setError] = useState('')
   const {googleSignIn, user}= UserAuth();
 
@@ -27,12 +28,16 @@ const Signup = () => {
     e.preventDefault()
     setError('')
     try{
-      await  createUser(name,email, password)
+      await  createUser(name,address, email, password)
       navigate('/account')
    }catch(e){
       setError(e.message)
      console.log(e.message)
    }
+   setAddress('');
+   setEmail('');
+   setName('');
+   setPassword('')
   }
 
   return (
@@ -62,6 +67,15 @@ const Signup = () => {
             className='form-input-signup'
             required/>
           </div>
+          <div className='form-label-signup'>
+          <label>Address</label>
+          </div>
+            <input 
+            type="address" 
+            onChange={(e)=>setAddress(e.target.value)} 
+            className='form-input-signup'
+            required/>
+          
           <div className='form-criterea-signup'>
           <div className='form-label-signup'>
             <label>Password</label>

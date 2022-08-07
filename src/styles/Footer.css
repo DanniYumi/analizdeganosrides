@@ -17,16 +17,14 @@
 .social-media{
     padding-top: 80px;
     padding-bottom: 80px;
-    padding-left: 500px;
+    padding-left: 250px;
 }
 .social-title{
     color: #F3EEEE;
     font-size: 20px;
     padding-bottom: 40px;
 }
-.social-media-links{
-    padding-left: 40px;
-}
+
 @media screen and (max-width:790px) {
     .container-footer{
         display: flex;

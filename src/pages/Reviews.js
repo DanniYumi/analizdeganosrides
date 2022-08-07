@@ -52,7 +52,7 @@ const Reviews = () => {
         })
          setComment(' ');
             setName('');
-            setComment('');
+            setRate('');
     }
 
     return (

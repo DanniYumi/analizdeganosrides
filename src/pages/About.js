@@ -1,6 +1,7 @@
 import React from 'react'
 import ProfileImg from '../assets/analizprofile.jpg'
 import '../styles/About.css'
+import {Link} from 'react-router-dom'
 
 const About = () => {
   return (
@@ -15,6 +16,9 @@ const About = () => {
 Vel explicabo vero ut rerum molestiae id possimus incidunt. In natus error qui dolorum voluptates non galisum sunt ut rerum alias et earum cumque est esse error id praesentium maxime. 33 nemo nemo sit excepturi debitis ut dolore consectetur id temporibus ipsum velit veniam.
 
 At laudantium mollitia et consequatur distinctio quo cumque velit. Ea quod voluptatem vel recusandae blanditiis id inventore dolorum et mollitia odio ea aliquam obcaecati. Et aliquid ratione eos consequuntur illum et vitae ullam vel autem quidem a earum atque ut commodi recusandae.</p>
+        </div>
+        <div className='goReviews'>
+        <Link to="/reviews"> Want to know what other costumers think about their rides?</Link>
         </div>
         </div>
         <div className='img-display'>

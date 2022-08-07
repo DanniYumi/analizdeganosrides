@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import PopUp from '../components/PopUp'
 import '../styles/Contact.css'
+import {GiVibratingSmartphone} from 'react-icons/gi';
+
 
 const Contact = () => {
   const [buttonPopUp, setButtonPopUp] = useState(false)
@@ -25,7 +27,14 @@ const Contact = () => {
     <div className='contact-container'>
       <div className='contact-tittle'>
         <h1>Contact us</h1>
-      </div>
+      </div>   
+    <div className="formContact">
+     <h3>Contact us through our phone</h3>
+     </div>
+    <div className="phone">
+     <GiVibratingSmartphone color="#F3EEEE" size={30}/>
+     <p>(+61) 0426844072</p>
+    </div>
       <div className='contact-text'>
         Do you have any doubts? Please write your message bellow.
       </div>
@@ -65,6 +74,7 @@ const Contact = () => {
           <p>Message sucessfully sent, we will reply to you as soon as possible</p>
         </PopUp>
       </form>
+
     </div>
 
   )
