@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useRef } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, 
         signInWithEmailAndPassword, 
         signOut, 
@@ -39,15 +39,16 @@ export const AuthContextProvider = ({ children }) => {
     
   };
 
-const createUser =async (name,email, password)=>{
+const createUser =async (name,email, address, password)=>{
     
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password, name);
+    const res = await createUserWithEmailAndPassword(auth, email, password, name, address);
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
       email,
+      address,
     });
 
     
@@ -57,9 +58,9 @@ const createUser =async (name,email, password)=>{
   }
 
 }
-const signIn = async (name,email, password)=>{
+const signIn = async (email, password)=>{
   try {
-    await signInWithEmailAndPassword(auth, name,email, password);
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
     alert(err.message);
