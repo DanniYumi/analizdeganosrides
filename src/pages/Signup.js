@@ -65,8 +65,7 @@ const Signup = () => {
             type="email" 
             onChange={(e)=>setEmail(e.target.value)} 
             className='form-input-signup'
-            required/>
-          </div>
+            required/> 
           <div className='form-label-signup'>
           <label>Address</label>
           </div>
@@ -75,6 +74,8 @@ const Signup = () => {
             onChange={(e)=>setAddress(e.target.value)} 
             className='form-input-signup'
             required/>
+          </div>
+       
           
           <div className='form-criterea-signup'>
           <div className='form-label-signup'>
