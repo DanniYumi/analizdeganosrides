@@ -3,6 +3,7 @@ import '../styles/Rides.css'
 import emailjs from '@emailjs/browser'
 import Select from 'react-select'
 import PopUp from '../components/PopUp'
+import { UserAuth } from '../context/AuthContext';
 import { db } from '../firebase'
 import { collection, addDoc } from 'firebase/firestore'
 
