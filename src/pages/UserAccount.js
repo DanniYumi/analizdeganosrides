@@ -3,9 +3,9 @@ import { UserAuth } from '../context/AuthContext';
 import React, { useState, useEffect, useRef } from 'react'
 import { db } from '../firebase'
 import '../styles/Account.css'
-import { collection, getDocs, doc, updateDoc, query, where } from 'firebase/firestore'
+import { collection, getDocs, addDoc, query, where } from 'firebase/firestore'
 import PopUp from '../components/PopUp'
-import { Link } from 'react-router-dom'
+
 import emailjs from '@emailjs/browser'
 import { async } from '@firebase/util';
 
@@ -64,19 +64,6 @@ setRides(data)
   const form = useRef()
 
 
-  const sendMessage = (e) => {
-    e.preventDefault();
-
-    emailjs.sendForm('service_kkfmvad', 'template_g7t30p6', form.current, 'uNsEOEO4to8UWzV9r')
-      .then((result) => {
-        console.log(result.text);
-        
-      }, (error) => {
-        console.log(error.text);
-      });
-    e.target.reset()
-
-  };
   const handleSignOut = async () => {
     try {
       await logOut()
@@ -85,8 +72,38 @@ setRides(data)
       console.log(error)
     }
   }
-
-
+  const handleCancel = async (e) => {
+    e.preventDefault()
+    const refCollection = collection(db, "cancelation")
+    const data = {
+  
+      
+      comment: comment,
+      email: email,
+     
+    };
+  
+    if (user?.uid) {
+      data.uid = user.uid
+    }
+  
+    console.log('adding new doc ', data)
+    addDoc(refCollection, data).then(response => {
+  
+      console.log(response)
+    }).catch(error => {
+      console.log(error.message)
+    })
+    emailjs.sendForm('service_kkfmvad', 'template_g7t30p6', form.current, 'uNsEOEO4to8UWzV9r')
+    .then((result) => {
+      console.log(result.text);
+      
+    }, (error) => {
+      console.log(error.text);
+    });
+    setComment(' ');
+    setEmail('');
+  }
   return (
     <div>
       <div className='acc-container'>
@@ -128,7 +145,7 @@ setRides(data)
           setTrigger={setButtonPopUp}>
           <p>Any changes are subject to not being accepted by the company. Rates can change according to distance and date</p>
           <form ref={form}
-        onSubmit={sendMessage}
+        onSubmit={handleCancel}
         className='canc-form'>
           <div >
 
