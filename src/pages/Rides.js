@@ -155,7 +155,7 @@ const Rides = () => {
             onChange={e => setComment(e.target.value)}/>
         </div>
         
-        <button onClick={sendMessage} className='quote-btn'>Get Quote</button>
+        <button  className='quote-btn'>Get Quote</button>
         <PopUp
           trigger={buttonPopUp}
           setTrigger={setButtonPopUp}>
