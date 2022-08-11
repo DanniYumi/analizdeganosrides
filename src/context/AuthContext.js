@@ -23,9 +23,9 @@ export const AuthContextProvider = ({ children }) => {
       const res = await signInWithRedirect(auth, provider);
       const user = res.user;
       const q = query(collection(db, "users"), where("uid", "==", user.uid));
-      const docs = await getDocs(q);
-      if (docs.docs.length === 0) {
-        await addDoc(collection(db, "users"), {
+      const querySnapshot = await getDocs(q)
+      {
+        await addDoc(collection(db, "users"),{
           uid: user.uid,
           name: user.displayName,
           
@@ -38,6 +38,7 @@ export const AuthContextProvider = ({ children }) => {
     }
     
   };
+  
 
 const createUser =async (name,email, address, password)=>{
     
@@ -60,12 +61,17 @@ const createUser =async (name,email, address, password)=>{
 }
 const signIn = async (email, password)=>{
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      const user = userCredential.user;
+      
+      })
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 }
+
+
 
 const sendPasswordReset = async (email) => {
   try {
@@ -92,7 +98,7 @@ const sendPasswordReset = async (email) => {
     };
   }, []);
 
-
+  
   return (
     <AuthContext.Provider value={{ googleSignIn, logOut, createUser, signIn, auth, db, sendPasswordReset,user }}>
       {children}

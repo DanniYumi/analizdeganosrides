@@ -18,7 +18,7 @@ Vel explicabo vero ut rerum molestiae id possimus incidunt. In natus error qui d
 At laudantium mollitia et consequatur distinctio quo cumque velit. Ea quod voluptatem vel recusandae blanditiis id inventore dolorum et mollitia odio ea aliquam obcaecati. Et aliquid ratione eos consequuntur illum et vitae ullam vel autem quidem a earum atque ut commodi recusandae.</p>
         </div>
         <div className='goReviews'>
-        <Link to="/reviews"> Want to know what other costumers think about their rides?</Link>
+        <Link to="/reviews"> Want to know what other customers think about their rides?</Link>
         </div>
         </div>
         <div className='img-display'>

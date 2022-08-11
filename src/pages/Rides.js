@@ -1,14 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import '../styles/Rides.css'
 import emailjs from '@emailjs/browser'
-import Select from 'react-select'
+
 import PopUp from '../components/PopUp'
-import { db } from '../firebase'
+import { db, user } from '../firebase'
+import { UserAuth } from '../context/AuthContext';
 import { collection, addDoc } from 'firebase/firestore'
 
 const Rides = () => {
   const [buttonPopUp, setButtonPopUp] = useState(false)
-  
+  const { user } = UserAuth()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [comment, setComment] = useState('')
@@ -16,25 +17,41 @@ const Rides = () => {
   const [to, setTo] = useState('')
   const [when, setWhen] = useState('')
   const [service, setService] = useState('')
-  
+
 
   const handleSubmit = async (e) => {
-      e.preventDefault()
-      const rideCollectionRef = collection(db, "rides")
-      addDoc(rideCollectionRef, { name: name, comment: comment,  email:email, from:from, to:to, when:when, service:service }).then(response => {
-          console.log(response)
-      }).catch(error => {
-          console.log(error.message)
-      })
-            setComment(' ');
-            setName('');
-            setEmail('');
-            setFrom(' ');
-            setTo('');
-            setWhen('');
-            setService('')
+    e.preventDefault()
+    const rideCollectionRef = collection(db, "rides")
+    const data = {
+      name: name,
+      comment: comment,
+      email: email,
+      from: from,
+      to: to,
+      when: when,
+      service: service
+    };
+
+    if (user?.uid) {
+      data.uid = user.uid
+    }
+
+    console.log('adding new doc ', data)
+    addDoc(rideCollectionRef, data).then(response => {
+
+      console.log(response)
+    }).catch(error => {
+      console.log(error.message)
+    })
+    setComment(' ');
+    setName('');
+    setEmail('');
+    setFrom(' ');
+    setTo('');
+    setWhen('');
+    setService('')
   }
-  
+
 
   const form = useRef()
 
@@ -52,7 +69,7 @@ const Rides = () => {
     e.target.reset()
 
   };
- 
+
   return (
     <div className='rides-container'>
       <div className='.contact-tittle'>
@@ -63,9 +80,9 @@ const Rides = () => {
         onSubmit={handleSubmit}
         className='ride-form'
       >
-        
+
         <div className='ind-form-rides'>
-          <label for='slot'  className='label-form-rides'> Choose the day for the ride</label>
+          <label for='slot' className='label-form-rides'> Choose the day for the ride</label>
           <input
             id="slot"
             type="datetime-local"
@@ -82,14 +99,14 @@ const Rides = () => {
         <div className='ind-form-rides'>
           <label className='label-form-rides'>Type of rides</label>
           <select value={service}
-          onChange={e => setService(e.target.value)}
-          name="type-ride"
-          className='dropdown-form'
-          required>
-          <option value="airport" >Airport Shuttle</option>
-          <option value="quick" >Quick Rides</option>
-          <option value="tourism" >Tourism</option>
-          <option value="interstate" >Interstate</option>
+            onChange={e => setService(e.target.value)}
+            name="type-ride"
+            className='dropdown-form'
+            required>
+            <option value="airport" >Airport Shuttle</option>
+            <option value="quick" >Quick Rides</option>
+            <option value="tourism" >Tourism</option>
+            <option value="interstate" >Interstate</option>
           </select>
         </div>
         <div className='ind-form-rides'>
@@ -98,9 +115,9 @@ const Rides = () => {
             placeholder="Name"
             name="user_name"
             value={name}
-            className='imput-container-rides' 
+            className='imput-container-rides'
             onChange={e => setName(e.target.value)}
-            required/>
+            required />
         </div>
         <div className='ind-form-rides'>
           <label className='label-form-rides'>Email</label>
@@ -115,15 +132,15 @@ const Rides = () => {
         <div className='ind-form-rides'>
           <label className='label-form-rides'>Your Address</label>
           <input name="from"
-          value={from}
-            className='imput-container-rides' 
+            value={from}
+            className='imput-container-rides'
             onChange={e => setFrom(e.target.value)}
-            required/>
+            required />
         </div>
         <div className='ind-form-rides'>
           <label className='label-form-rides'>Final destination</label>
           <input name="where"
-          value={to}
+            value={to}
             className='imput-container-rides'
             onChange={e => setTo(e.target.value)}
             required />
@@ -133,11 +150,11 @@ const Rides = () => {
           <textarea placeholder='If you have any additional question or request, place here'
             name="comments"
             value={comment}
-            className='textarea-container-rides' 
-            onChange={e => setComment(e.target.value)}/>
+            className='textarea-container-rides'
+            onChange={e => setComment(e.target.value)} />
         </div>
-        
-        <button onClick={sendMessage} className='quote-btn'>Get Quote</button>
+
+        <button onClick={sendMessage}className='quote-btn'>Get Quote</button>
         <PopUp
           trigger={buttonPopUp}
           setTrigger={setButtonPopUp}>
