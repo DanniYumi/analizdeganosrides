@@ -94,6 +94,11 @@
     color: #234945;
     margin-bottom: 5px;
   }
+  .ratingBtn{
+    display: none;
+    cursor: pointer;
+    transition: color 200ms;
+  }
   .view-btn{
     background-color: #234945;
     width: 100px;
